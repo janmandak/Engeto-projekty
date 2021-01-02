@@ -18,10 +18,12 @@ def bulls_and_cows():
     # generate random 4-digit number
     import random
     number = random.sample(range(0, 10), 4)
+    #number = [8,2,0,3]
 
     # make sure 0 is not at the beginning
     if number[0] == 0:
       number[0] = random.randint(1,9)
+    print(number)  
 
     # variable to count number of guesses
     counter = 1
@@ -34,7 +36,15 @@ def bulls_and_cows():
     # let the game begin!
     while True:
 
-      guess = int(input('Guess a 4-digit number!'))
+      guess = input('Guess a 4-digit number!')
+
+      if guess.isdigit() == False:
+        print('-' * 40)
+        print('This is not a number! Again, please.')
+        print('-' * 40)
+        counter += 1
+        continue
+
       guess_list = [int(x) for x in str(guess)]
       print('-' * 40)
 
@@ -42,20 +52,36 @@ def bulls_and_cows():
         print('This is not a 4-digits number! Again, please.')
         print('-' * 40)
         counter += 1
+        continue
 
-        guess = int(input('Guess a 4-digit number!'))
-        guess_list = [int(x) for x in str(guess)]
+        #guess = int(input('Guess a 4-digit number!'))
+        #guess_list = [int(x) for x in str(guess)]
+
+      # logic for 4 equal numbers
+      if guess_list[0] == guess_list[1] == guess_list[2] == guess_list[3]:
+        print('Numbers cannot be the same! Again, please.')
+        print('-' * 40)
+        counter += 1
+        continue
+        
+
+        #guess = int(input('Guess a 4-digit number!'))
+        #guess_list = [int(x) for x in str(guess)]
+ 
 
       if number == guess_list:
         if counter <= 5:
+          print('-' * 60)
           print('Congratulations, you won! You needed only', counter, 'guesses.', 'Outstanding performance!')
-          print('-' * 40)
+          print('-' * 60)
         elif counter > 5 and counter <= 10:
+          print('-' * 60)
           print('Congratulations, you won! You needed', counter, 'guesses.', 'Good performance.')
-          print('-' * 40)
+          print('-' * 60)
         else:
+          print('-' * 60)
           print('Congratulations, you won! You needed', counter, 'guesses.', 'Can be better, but you won, so what? :)')
-          print('-' * 40)
+          print('-' * 60)
 
         break
       
@@ -65,9 +91,10 @@ def bulls_and_cows():
         bulls = 0
         cows = 0
         for i in range(len(guess_list)):
-          if guess_list[i] in number:
-            bulls += 1
           if guess_list[i] == number[i]:
+            bulls += 1
+            continue
+          if guess_list[i] in number:
               cows += 1
         
         if bulls == 1:
@@ -79,10 +106,6 @@ def bulls_and_cows():
           print('You have 1 cow.')
         else:
           print('You have', cows, 'cows.')
-
-        print('-' * 40)
-
-        print('Sorry, try it again.')
 
         print('-' * 40)
 
