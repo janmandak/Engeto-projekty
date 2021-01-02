@@ -54,20 +54,12 @@ def bulls_and_cows():
         counter += 1
         continue
 
-        #guess = int(input('Guess a 4-digit number!'))
-        #guess_list = [int(x) for x in str(guess)]
-
       # logic for 4 equal numbers
       if guess_list[0] == guess_list[1] == guess_list[2] == guess_list[3]:
         print('Numbers cannot be the same! Again, please.')
         print('-' * 40)
         counter += 1
         continue
-        
-
-        #guess = int(input('Guess a 4-digit number!'))
-        #guess_list = [int(x) for x in str(guess)]
- 
 
       if number == guess_list:
         if counter <= 5:
